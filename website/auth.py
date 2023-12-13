@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import current_user
+from models import User
+from __init__ import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -12,7 +15,7 @@ def login():
 def logout():
     return "<p>logout</p>"
 
-@auth.route('/sign-up', methods=['POST', 'GET'])
+@auth.route('/sign_up', methods=['POST', 'GET'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -22,9 +25,13 @@ def sign_up():
 
         if password != password_confirmation:
             flash('Passwords do not match', category='error')
-        elif len(password) < 7:
+        elif password is None or len(password) < 7:
             flash('Password must be longer than 7 characters', category='error')
         else:
+            new_user = User(email=email, first_name=first_name, password=generate_password_hash(password, method='sha256'))
+            db.session.add(new_user)
+            db.session.commit()
             flash('Account successfully created', category='success')
+            return redirect(url_for('views.home'))
 
     return render_template('sign_up.html', user=current_user)
