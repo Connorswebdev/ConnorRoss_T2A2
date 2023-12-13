@@ -1,29 +1,21 @@
-
 import os
-
-class Config:
-    SECRET_KEY = 'secretkey123'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-class DevelopmentConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres123@localhost/your_database'
-
-class ProductionConfig(Config):
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'production_database_uri'
-
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
+migrate = Migrate()
 
-def create_app(config_class=Config):
+def create_app(config_class='config.Config'):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    # Check if SQLALCHEMY_DATABASE_URI is set
+    if not app.config.get('SQLALCHEMY_DATABASE_URI'):
+        raise RuntimeError("SQLALCHEMY_DATABASE_URI is not set. Please provide a valid URI.")
+
     db.init_app(app)
+    migrate.init_app(app, db)
 
     from views import views
     from auth import auth
@@ -34,9 +26,3 @@ def create_app(config_class=Config):
     from models import User, Allergy, Restaurant
 
     return app
-
-def create_database(app):
-    if not os.path.exists('website/' + app.config['DB_NAME']):
-        with app.app_context():
-            db.create_all()
-            print('Created database')
