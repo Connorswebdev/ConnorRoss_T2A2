@@ -1,6 +1,5 @@
 from datetime import datetime
-from website.extensions import db
-from website import db
+from __init__ import db
 from flask_login import UserMixin
 
 
