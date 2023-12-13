@@ -2,11 +2,9 @@ from datetime import datetime
 from __init__ import db
 from flask_login import UserMixin
 
-
 class User(db.Model, UserMixin):
-    __table__ = db.Table('user', db.metadata, extend_existing=True, autoload = True, autoload_with=db.engine)
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80), unique=True, nullable=False)
+    first_name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     allergies = db.relationship('Allergy', backref='user', lazy=True)

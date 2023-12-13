@@ -1,14 +1,28 @@
+
+import os
+
+class Config:
+    SECRET_KEY = 'secretkey123'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres123@localhost/your_database'
+
+class ProductionConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'production_database_uri'
+
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
 
 db = SQLAlchemy()
-DB_NAME = 'database.db'
 
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'secretkey123' 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://your_username:your_password@localhost/your_database'
+    app.config.from_object(config_class)
+
     db.init_app(app)
 
     from views import views
@@ -22,6 +36,7 @@ def create_app():
     return app
 
 def create_database(app):
-    if not path.exists('website/' + DB_NAME):
-        db.create_all(app=app)
-        print('Created database')
+    if not os.path.exists('website/' + app.config['DB_NAME']):
+        with app.app_context():
+            db.create_all()
+            print('Created database')
