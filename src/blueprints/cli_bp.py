@@ -104,8 +104,7 @@ cities = [
 
 db.session.query(City).delete() # Delete any existing cities data first to avoid unexpected results
 db.session.add_all(cities)
-db.session.commit() # Cities are committed so it can be added to the venues model as a foreign key
-
+db.session.commit() # Cities are committed 
 restaurants = [
         Restaurant(
             name='Lemoni Greek Cuzina',
@@ -131,7 +130,7 @@ restaurants = [
             street_name='Prospect Rd',
             phone='(08) 8344 5873',
             email='hello@staxburger.com',
-            cuisine = 'American'
+            cuisine = 'American',
             city_id=cities[2].id
         )
     ]

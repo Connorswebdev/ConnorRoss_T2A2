@@ -2,7 +2,7 @@ from init import db
 from marshmallow import fields, Schema, validate, validates, ValidationError
 from marshmallow.validate import Length
 
-class Locations(db.Model):
+class Location(db.Model):
     __tablename__ = 'locations'
     id = db.Column(db.Integer, primary_key=True)
     allergy_name = db.Column(db.String(150), nullable=False)
