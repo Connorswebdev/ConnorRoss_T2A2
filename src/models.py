@@ -1,6 +1,7 @@
 from datetime import datetime
-from __init__ import db
-from flask_login import UserMixin
+from app import db
+from flask_login import LoginManager, UserMixin
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
