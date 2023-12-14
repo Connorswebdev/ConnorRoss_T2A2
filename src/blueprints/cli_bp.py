@@ -22,21 +22,21 @@ def seed_db():
     users = [
         User(
             first_name='admin',
-            l_name='admin',
+            last_name='admin',
             email='admin@dineandwine.com',
             password=bcrypt.generate_password_hash('admin123%').decode('utf-8'),
             is_admin=True
         ),
         User(
-            f_name='John',
-            l_name='Doe',
+            first_name='John',
+            last_name='Doe',
             email='hello@fakeemail.com',
             password=bcrypt.generate_password_hash('Johndoe1!').decode('utf-8'),
             is_admin=False
         ),
         User(
-            f_name='Robin',
-            l_name='Banks',
+            first_name='Robin',
+            last_name='Banks',
             email='idonotrobbanks@mymail.com',
             password=bcrypt.generate_password_hash('iluvmoney!').decode('utf-8'),
             is_admin=False
@@ -135,4 +135,5 @@ restaurants = [
             city_id=cities[2].id
         )
     ]
+
 print("Models seeded")
