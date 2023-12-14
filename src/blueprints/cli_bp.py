@@ -109,63 +109,30 @@ db.session.commit() # Cities are committed so it can be added to the venues mode
 restaurants = [
         Restaurant(
             name='Lemoni Greek Cuzina',
-            street_number='59',
-            street_name='Bundaleer St',
-            phone='0733741360',
-            email='hello@bundaleer.com',
-            cost_per_head='190',
-            min_guests='80',
-            max_guests='200',
+            street_number='1795',
+            street_name='Wynnum Rd',
+            phone='0733905505',
+            email='bookings@lemoni.com.au',
+            cuisine = 'Greek',
+            city_id=cities[0].id
+        ),
+        Restaurant(
+            name='Pho Bistro & Grill',
+            street_number='348',
+            street_name='Bagot Rd',
+            phone='(08) 8981 4914',
+            email='phobistrodarwin@gmail.com',
+            cuisine = 'Vietnamese',
+            city_id=cities[3].id
+        ),
+        Restaurant(
+            name='Stax Burger Co.',
+            street_number='98',
+            street_name='Prospect Rd',
+            phone='(08) 8344 5873',
+            email='hello@staxburger.com',
+            cuisine = 'American'
             city_id=cities[2].id
-        ),
-        Restaurant(
-            name='Dalywaters Roses Garden and Chapel',
-            street_number='240',
-            street_name='Bungower Rd',
-            phone='0425608264',
-            email='hello@dalywaters.com',
-            cost_per_head='220',
-            min_guests='50',
-            max_guests='150',
-            city_id=cities[1].id
-        ),
-        Restaurant(
-            name='Quamby Elocation',
-            street_number='1145',
-            street_name='Westwood Rd',
-            phone='0412345678',
-            email='hello@quambyelocation.com',
-            cost_per_head='220',
-            min_guests='80',
-            max_guests='300',
-            city_id=cities[4].id
         )
     ]
-
-db.session.query(Venue).delete() # Delete any existing venue data first to avoid unexpected results
-db.session.add_all(venues)
-db.session.commit() # Venues are committed so it can be added to the weddings model as a foreign key
-
-weddings = [
-        Wedding(
-            date_of_wedding='2023-11-30',
-            user_id=users[0].id,
-            venue_id=venues[1].id
-        ),
-        Wedding(
-            date_of_wedding='2024-05-12',
-            user_id=users[1].id,
-            venue_id=venues[2].id
-        ),
-        Wedding(
-            date_of_wedding='2025-01-02',
-            user_id=users[2].id,
-            venue_id=venues[0].id
-        )
-    ]
-
-db.session.query(Wedding).delete() # Delete any existing wedding data first to avoid unexpected results
-db.session.add_all(weddings)
-db.session.commit() # Final commit to add weddings to the database
-
 print("Models seeded")
