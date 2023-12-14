@@ -11,6 +11,7 @@ class Restaurant(db.Model):
     phone = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False, unique=True)
     cuisine = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text(255))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     user = db.relationship('User', backref=db.backref('restaurants', lazy=True))
 
@@ -18,7 +19,7 @@ class Restaurant(db.Model):
 
 
 # JSON (de)serialization with Marshmallow
-class StateSchema(ma.Schema):
+class RestaurantSchema(ma.Schema):
     class Meta:
         ordered = True
         fields = ('restaurant_id', 'name', 'user')

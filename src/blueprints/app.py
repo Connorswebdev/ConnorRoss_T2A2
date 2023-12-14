@@ -2,8 +2,12 @@ from flask import Flask
 from init import db, ma, bcrypt, jwt
 from blueprints.cli_bp import cli_bp
 from blueprints.auth_bp import auth_bp
+from blueprints.users_bp import users_bp
+from blueprints.restaurant_bp import restaurants_bp
+from blueprints.allergy_bp import allergy_bp
+from marshmallow.exceptions import ValidationError
+from os import environ
 
-import os
 #App main function that notifies Flask where all functionalities are located
 def setup():
     app = Flask(__name__)
@@ -34,9 +38,9 @@ def setup():
     # Registering blueprints to run with command "flask run"
     app.register_blueprint(cli_bp)
     app.register_blueprint(auth_bp)
-    app.register_blueprint(weddings_bp)
-    app.register_blueprint(guests_bp)
-    app.register_blueprint(venues_bp)
+    app.register_blueprint(users_bp)
+    app.register_blueprint(allergy_bp)
+    app.register_blueprint(restaurants_bp)
     app.register_blueprint(users_bp)
 
     return app
