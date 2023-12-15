@@ -28,8 +28,8 @@ def update_user(user_id):
     user_info = UserSchema().load(request.json) # Applies validation rules in schema
     if user:
         admin_or_owner_required(user.id)
-        user.first_name = user_info.get('f_name', user.first_name) # This, and the following rows, are all optional. If not entered, then the original value will be kept.
-        user.last_name = user_info.get('l_name', user.last_name)
+        user.first_name = user_info.get('first_name', user.first_name) # This, and the following rows, are all optional. If not entered, then the original value will be kept.
+        user.last_name = user_info.get('last_name', user.last_name)
         user.email = user_info.get('email', user.email)
         user.password = bcrypt.generate_password_hash(user_info.get('password', user.password)).decode('utf-8')
         user.is_admin = user_info.get('is_admin', user.is_admin)

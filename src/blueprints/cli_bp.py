@@ -2,7 +2,7 @@ from init import db, bcrypt
 from models.user import User
 from models.allergy import Allergy
 from models.restaurant import Restaurant
-from models.locations import Location
+from models.location import Location
 from models.city import City
 from flask import Blueprint
 from flask_sqlalchemy import SQLAlchemy
@@ -27,6 +27,7 @@ def seed_db():
             last_name='admin',
             email='admin@dineandwine.com',
             password=bcrypt.generate_password_hash('admin123%').decode('utf-8'),
+            allergies='None',
             is_admin=True
         ),
         User(
@@ -34,6 +35,7 @@ def seed_db():
             last_name='Doe',
             email='hello@fakeemail.com',
             password=bcrypt.generate_password_hash('Johndoe1!').decode('utf-8'),
+            allergies='Nuts',
             is_admin=False
         ),
         User(
@@ -41,6 +43,7 @@ def seed_db():
             last_name='Banks',
             email='idonotrobbanks@mymail.com',
             password=bcrypt.generate_password_hash('iluvmoney!').decode('utf-8'),
+            allergies='Gluten',
             is_admin=False
             )
         ]

@@ -4,7 +4,7 @@ from marshmallow.validate import Length
 
 class Allergy(db.Model):
     __tablename__ = 'allergies'
-    id = db.Column(db.Integer, primary_key=True)
+    allergy_id = db.Column(db.Integer, primary_key=True)
     allergy_name = db.Column(db.String(150), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     user = db.relationship('User', back_populates='allergies_model', overlaps="allergies,user_model")
@@ -16,4 +16,4 @@ class AllergySchema(Schema):
 
     class Meta:
         ordered = True
-        fields = ('id', 'allergy_name', 'user')
+        fields = ('allergy_id', 'allergy_name', 'user')
