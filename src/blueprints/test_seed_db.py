@@ -1,12 +1,12 @@
 import unittest
 from init import db
-from app import create_app
+from app import setup
 from models.user import User
 from cli_bp import seed_db
 
 class DatabaseSeedingTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app()
+        self.app = setup()
         self.app.config['TESTING'] = True
         self.client = self.app.test_client()
 
