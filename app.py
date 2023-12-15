@@ -3,6 +3,10 @@ from init import db, ma, bcrypt, jwt
 from flask_migrate import Migrate
 from marshmallow.exceptions import ValidationError
 from os import environ
+from dotenv import load_dotenv  # Add this line
+
+# Load environment variables from .env file
+load_dotenv()
 
 #App main function that notifies Flask where all functionalities are located
 def setup():
@@ -32,11 +36,11 @@ def setup():
         return {'error': err.__dict__['messages']}, 400
     
     # Blueprint imports are here to remove a circular import
-    from blueprints.cli_bp import cli_bp
-    from blueprints.auth_bp import auth_bp
-    from blueprints.users_bp import users_bp
-    from blueprints.restaurant_bp import restaurants_bp
-    from blueprints.allergy_bp import allergy_bp
+    from src.blueprints.cli_bp import cli_bp
+    from src.blueprints.auth_bp import auth_bp
+    from src.blueprints.users_bp import users_bp
+    from src.blueprints.restaurant_bp import restaurants_bp
+    from src.blueprints.allergy_bp import allergy_bp
 
     # Registering blueprints to run with command "flask run"
     app.register_blueprint(cli_bp)

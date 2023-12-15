@@ -5,14 +5,14 @@ from marshmallow.validate import Length
 class Location(db.Model):
     __tablename__ = 'locations'
     id = db.Column(db.Integer, primary_key=True)
-    allergy_name = db.Column(db.String(150), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    user = db.relationship('User', backref=db.backref('allergies', lazy=True))
+    name = db.Column(db.String(150), nullable=False)
+    cities = db.relationship('City', back_populates='location', cascade='all, delete')
+    location_id = db.Column(db.Integer, db.ForeignKey('citiy_id'), nullable=False)
+    users = db.relationship('User', back_populates='location', foreign_keys=[location_id])
 
-
-class AllergySchema(Schema):
-    allergy_name = fields.String(required=True, validate=validate.Length(min=1, max=150))
+class LocationSchema(Schema):
+    location_name = fields.String(required=True, validate=validate.Length(min=1, max=150))
 
     class Meta:
         ordered = True
-        fields = ('id', 'allergy_name', 'user')
+        fields = ('location_id', 'location_name', 'user')

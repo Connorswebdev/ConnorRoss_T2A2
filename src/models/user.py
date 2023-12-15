@@ -5,10 +5,11 @@ class User(db.Model):
     __tablename__ = 'users'
     user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(80), nullable=False)
-    last_name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
-    allergies = db.relationship('Allergy', backref='user', lazy=True)
+    allergies_model = db.relationship('Allergy', back_populates='user_model', overlaps="allergies,user_model")
+    location_id = db.Column(db.Integer, db.ForeignKey('location_id'))
+    location = db.relationship('Location', back_populates='users', foreign_keys=[location_id])
 
 
 class UserSchema(Schema):

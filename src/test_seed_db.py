@@ -2,7 +2,7 @@ import unittest
 from init import db
 from app import setup
 from models.user import User
-from cli_bp import seed_db
+from blueprints.cli_bp import seed_db
 
 class DatabaseSeedingTestCase(unittest.TestCase):
     def setUp(self):
@@ -19,14 +19,11 @@ class DatabaseSeedingTestCase(unittest.TestCase):
             seed_db()
 
         with self.app.app_context():
-            # Check if the expected data is present in the database after seeding
-            # Add your assertions here based on the expected data
 
-            # Example:
+            # Testing that user is seeded correctly
             user_count = db.session.query(User).count()
             self.assertEqual(user_count, 3, "Expected 3 users after seeding")
-
-            # Continue with similar assertions for other models
+\
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,9 +1,9 @@
 from init import db, bcrypt
-from models.user import User
-from models.allergy import Allergy
-from models.restaurant import Restaurant
-from models.locations import Location
-from models.city import City
+from src.models.user import User
+from src.models.allergy import Allergy
+from src.models.restaurant import Restaurant
+from src.models.locations import Location
+from src.models.city import City
 from flask import Blueprint
 
 cli_bp = Blueprint('db', __name__)
@@ -23,7 +23,7 @@ def seed_db():
         User(
             first_name='admin',
             last_name='admin',
-            email='admin@dineandwine.com',
+            email='admin@picknik.com',
             password=bcrypt.generate_password_hash('admin123%').decode('utf-8'),
             is_admin=True
         ),

@@ -1,21 +1,16 @@
 from init import db, ma
 
 class Restaurant(db.Model):
-    # Renames table to plural based on convention
     __tablename__ = 'restaurants'
-
-    restaurant_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
-    street_number = db.Column(db.Integer, nullable=False)
-    street_name = db.Column(db.String(200), nullable=False)
-    phone = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False, unique=True)
-    cuisine = db.Column(db.String(200), nullable=False)
-    description = db.Column(db.Text(255))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    user = db.relationship('User', backref=db.backref('restaurants', lazy=True))
-
-    cities = db.relationship('City', back_populates='location', cascade='all, delete') #
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    street_number = db.Column(db.String(10))
+    street_name = db.Column(db.String(255))
+    phone = db.Column(db.String(20))
+    email = db.Column(db.String(255))
+    cuisine = db.Column(db.String(100))
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), nullable=False)
+    city = db.relationship('City', backref=db.backref('restaurants', lazy=True))
 
 
 # JSON (de)serialization with Marshmallow
