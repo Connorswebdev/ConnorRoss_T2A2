@@ -9,7 +9,7 @@ class Restaurant(db.Model):
     phone = db.Column(db.String(20))
     email = db.Column(db.String(255))
     cuisine = db.Column(db.String(100))
-    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.id'))
     city = db.relationship('City', backref=db.backref('restaurants', lazy=True))
 
 

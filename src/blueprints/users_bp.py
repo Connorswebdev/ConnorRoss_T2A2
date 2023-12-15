@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from models.user import User, UserSchema
 from init import db, bcrypt
 from flask_jwt_extended import jwt_required
-from blueprints.auth_bp import admin_required, admin_or_owner_required
+from .auth_bp import admin_required, admin_or_owner_required
 
 # To add blueprint for users and define the prefix for all URLs in this blueprint
 users_bp = Blueprint('users', __name__, url_prefix='/users')

@@ -3,9 +3,8 @@ from marshmallow import fields
 
 class City(db.Model):
     __tablename__ = 'cities'
-
-    city_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
     postcode = db.Column(db.String(10), nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     location = db.relationship('Location', back_populates='cities')

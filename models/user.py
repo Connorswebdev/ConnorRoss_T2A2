@@ -8,8 +8,8 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     allergies_model = db.relationship('Allergy', back_populates='user_model', overlaps="allergies,user_model")
-    location_id = db.Column(db.Integer, db.ForeignKey('location_id'))
-    location = db.relationship('Location', back_populates='users', foreign_keys=[location_id])
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'))
+    location = db.relationship('Location', back_populates='users')
 
 
 class UserSchema(Schema):
