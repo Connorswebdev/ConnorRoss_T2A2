@@ -4,15 +4,13 @@ from marshmallow import fields, Schema, validate, validates, ValidationError
 class User(db.Model):
     __tablename__ = 'users'
     user_id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80), nullable=False)
-    last_name = db.Column(db.String(80), nullable=False)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
-    allergies_model = db.relationship('Allergy', back_populates='user_model', overlaps="allergies,user_model")
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
     location = db.relationship('Location', backref='users', lazy=True)
     allergies_model = db.relationship('Allergy', back_populates='user_model', overlaps="allergies,user_model")
-
 
 class UserSchema(Schema):
     allergies = fields.List(fields.Nested('AllergySchema', exclude=['user']))
@@ -24,9 +22,8 @@ class UserSchema(Schema):
 
     @validates('first_name')
     def validate_first_name(self, value):
-        if value and not value.isalpha():
+        if not value.isalpha():
             raise ValidationError('First name must only contain letters, no numbers or special characters.')
-
 
     class Meta:
         ordered = True
@@ -42,7 +39,7 @@ class UserProfileUpdate(Schema):
 
     @validates('first_name')
     def validate_first_name(self, value):
-        if value and not value.isalpha():
+        if not value.isalpha():
             raise ValidationError('First name must only contain letters, no spaces.')
 
 class AllergyUpdateSchema(Schema):

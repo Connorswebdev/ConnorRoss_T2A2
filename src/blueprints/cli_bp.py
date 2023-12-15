@@ -1,11 +1,9 @@
+from flask import Blueprint
 from init import db, bcrypt
 from models.user import User
 from models.allergy import Allergy
 from models.restaurant import Restaurant
-from models.location import Location
 from models.city import City
-from flask import Blueprint
-from flask_sqlalchemy import SQLAlchemy
 
 cli_bp = Blueprint('db', __name__)
 
@@ -45,90 +43,79 @@ def seed_db():
             password=bcrypt.generate_password_hash('iluvmoney!').decode('utf-8'),
             allergies='Gluten',
             is_admin=False
-            )
-        ]
+        )
+    ]
 
     # Delete existing User data to avoid unexpected results
     db.session.query(User).delete()
     db.session.add_all(users)
     db.session.commit()
-        # Only Australian locations are entered currently for demonstration purposes
-    locations = [
-        Location(name='Melbourne'),
-        Location(name='Brisbane'),
-        Location(name='Hobart'),
-        Location(name='Adelaide'),
-        Location(name='Sydney'),
-        Location(name='Perth')
-    ]
 
-    db.session.query(Location).delete() # Delete any existing location data first to avoid unexpected results
-    db.session.add_all(locations)
-    db.session.commit() # locations are committed so it can be added to the cities model as a foreign key
-
-        # Only select cities are added here for demonstration purposes
+    # Only select cities are added here for demonstration purposes
     cities = [
         City(
-                name='Tingalpa',
-                postcode='4173',
-                location_id=locations[0].id
-            ),
+            name='Tingalpa',
+            postcode='4173',
+            location_name='Brisbane'  # Adding location information directly to the city
+        ),
         City(
-                name='Mayfield',
-                postcode='2304',
-                location_id=locations[1].id
-            ),
+            name='Mayfield',
+            postcode='2304',
+            location_name='Sydney'
+        ),
         City(
-                name='Cocount Grove',
-                postcode='0810',
-                location_id=locations[3].id
-            ),
+            name='Cocount Grove',
+            postcode='0810',
+            location_name='Adelaide'
+        ),
         City(
-                name='Riverton',
-                postcode='6148',
-                location_id=locations[4].id
-            ),
+            name='Riverton',
+            postcode='6148',
+            location_name='Perth'
+        ),
         City(
-                name='Prospect',
-                postcode='5082',
-                location_id=locations[2].id
-            )
-        ]
+            name='Prospect',
+            postcode='5082',
+            location_name='Hobart'
+        )
+    ]
 
-    db.session.query(City).delete() # Delete any existing cities data first to avoid unexpected results
+    db.session.query(City).delete()  # Delete any existing cities data first to avoid unexpected results
     db.session.add_all(cities)
-    db.session.commit() # Cities are committed 
+    db.session.commit()  # Cities are committed
+
     restaurants = [
         Restaurant(
-                name='Lemoni Greek Cuzina',
-                street_number='1795',
-                street_name='Wynnum Rd',
-                phone='0733905505',
-                email='bookings@lemoni.com.au',
-                cuisine = 'Greek',
-                city_id=cities[0].id
-            ),
-            Restaurant(
-                name='Pho Bistro & Grill',
-                street_number='348',
-                street_name='Bagot Rd',
-                phone='(08) 8981 4914',
-                email='phobistrodarwin@gmail.com',
-                cuisine = 'Vietnamese',
-                city_id=cities[3].id
-            ),
-            Restaurant(
-                name='Stax Burger Co.',
-                street_number='98',
-                street_name='Prospect Rd',
-                phone='(08) 8344 5873',
-                email='hello@staxburger.com',
-                cuisine = 'American',
-                city_id=cities[2].id
-            )
-        ]
-    db.session.query(Restaurant).delete() # Delete any existing restaurant data first to avoid unexpected results
+            name='Lemoni Greek Cuzina',
+            street_number='1795',
+            street_name='Wynnum Rd',
+            phone='0733905505',
+            email='bookings@lemoni.com.au',
+            cuisine='Greek',
+            city_id=cities[0].id
+        ),
+        Restaurant(
+            name='Pho Bistro & Grill',
+            street_number='348',
+            street_name='Bagot Rd',
+            phone='(08) 8981 4914',
+            email='phobistrodarwin@gmail.com',
+            cuisine='Vietnamese',
+            city_id=cities[3].id
+        ),
+        Restaurant(
+            name='Stax Burger Co.',
+            street_number='98',
+            street_name='Prospect Rd',
+            phone='(08) 8344 5873',
+            email='hello@staxburger.com',
+            cuisine='American',
+            city_id=cities[4].id
+        )
+    ]
+
+    db.session.query(Restaurant).delete()  # Delete any existing restaurant data first to avoid unexpected results
     db.session.add_all(restaurants)
-    db.session.commit() # Final commit to add weddings to the database
+    db.session.commit()  # Final commit to add restaurants to the database
 
     print("Models seeded")
