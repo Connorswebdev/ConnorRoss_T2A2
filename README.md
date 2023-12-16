@@ -25,7 +25,7 @@ Populate the tables with:
 
 `flask db seed`
 
-Run server with in /src folder:
+Run the server by running the following command:
 
 `flask run`
 
@@ -308,8 +308,8 @@ Response:
 
 The Flask application incorporates a robust error handling system to provide informative and user-friendly responses in various exceptional scenarios. For instance, when attempting to access or modify resources such as users, restaurants, or allergies that do not exist, the application responds with a clear "Not Found" message and a corresponding HTTP 404 status code. Additionally, the system handles scenarios like attempting to create a new user with an email address already in use or creating a restaurant with an invalid location ID, delivering appropriate responses with distinct HTTP status codes such as 409 Conflict or 400 Bad Request, respectively. Furthermore, when user login attempts fail due to incorrect credentials or missing email/password information, the application issues a concise and accurate error message alongside a 401 Unauthorized status code. Lastly, to ensure secure data access, the system requires the appropriate privileges (admin or user ownership) and responds with a 401 Unauthorized status if those conditions are not met. This comprehensive approach to error handling enhances the API's usability by guiding users through potential issues and facilitating effective issue resolution. Images are linked below which provide examples of how error handling was used in the app.
 
-![Local Image](./docs/errorhandling.JPG)
-![Local Image](./docs/errorhandling2.JPG)
+![Error Handling](./docs/errorhandling.JPG)
+![Error Handling 2](./docs/errorhandling2.JPG)
 
 ### Requirement 6 - ERD
 
@@ -369,10 +369,12 @@ One-to-Many with Allergy Model: A user can have multiple allergies, but each all
 * Allergy Model 
 
 Relationships:
-Many-to-One with User Model: Many allergies are associated with one user, but each allergy is linked to a specific user.
-Location Model 
 
-* Relationships:
+Many-to-One with User Model: Many allergies are associated with one user, but each allergy is linked to a specific user.
+
+* Location Model 
+
+Relationships:
 
 One-to-Many with City Model: A location can have multiple cities, but each city is associated with one location.
 One-to-Many with Restaurant Model: A location can have multiple restaurants, but each restaurant is associated with one location.
@@ -380,6 +382,7 @@ One-to-Many with Restaurant Model: A location can have multiple restaurants, but
 * City Model 
 
 Relationships:
+
 Many-to-One with Location Model: Many cities can belong to one location, but each city is associated with one location.
 One-to-Many with Restaurant Model: A city can have multiple restaurants, but each restaurant is located in one city.
 
@@ -387,3 +390,56 @@ One-to-Many with Restaurant Model: A city can have multiple restaurants, but eac
 
 Relationships:
 Many-to-One with City Model: Many restaurants can be located in one city, but each restaurant is associated with one city.
+
+Requirement 9
+
+
+### Requirement 10 - Describe the way tasks are allocated and tracked in your project
+
+The project began by brainstorming app ideas, by asking friends what app they would love to have I was able to get some quick inspiration. A close friend of mine has a nut allergy and recently went to a restaurant where his food was cross-contaminated with nuts. So we came up with an idea for an app that would search for restaurants nearby that are allergy friendly to all users. I proposed this idea on Discord for an educators approval. I also wanted to add a function where users could enter ingredients and find recipes with "What's in The Fridge" or WTF for short. Due to time constraints and certain limitations (which I will get into shortly), this became a bit too far out of reach.
+
+In the development phase I was also already beginning to think about the relationships each model would share and how this would look in code. After a few flask install issues where the config file installed in the wrong location which took a long time googling fixes for, I was able to get it up and running. I wanted to start thinking about the end goal of the application. I created some user stories with some helpful suggestions from my previously mentioned friend. 
+
+#### User Stories
+
+As a guest user I would like to:
+
+* Be able to create a profile and ensure my information is secure. 
+* I would like to manage my profile, including adding allergy information if necessary.
+* I would like to delete my profile.
+
+As a registered user I would like to:
+
+* I want to log in to my account using my email and password.
+* I want to update my personal information such as name, email, and password.
+* I want to view my profile details, excluding sensitive information like passwords.
+* I want to log out of my account securely.
+* I want to search for restaurants based on location or cuisine.
+* I want to filter restaurants based on specific criteria, such as dietary options.
+* I want to view a map of restaurant locations.
+
+
+I utilised Trello to help me keep track of my project. I used 5 different headers to keep the bulk of my work in their respective place.
+
+* TO-DO
+
+I needed somewhere I could put all of my work that was needing to be complete. This was the first stop and where I would allocate the date I wanted it to be completed by. For the most part, I planned this section how I wanted to. Due to some previously mentioned flask install issues and a few other postgresql issues I did end up falling behind. An image of the board is attached below. On the 15th was when I ran into the bulk of my issues and everything on that day was set backwards and was completed on the 16th instead.
+
+* In Progress
+
+This is where I would put each item of that day in the morning, this way I knew exactly what needed to be done that day. This greatly improved my efficiency as I wasn't bouncing between tasks. I was able to manage all of the required items into the one day and if time allocated I would be able to test functions or check into my "REVISION" tab which is coming up.
+
+* Testing
+
+When creating all of my models and database seeds etc, I was often testing how they would work and make sure they were working as intended. By moving the items that needed to be tested here I would be able to create tests relevant to the item. In the file structure under ./src/test_seed_db.py, you will see that I had setup a test that would verify items were being seeded correctly. I was able to enter how many items should be seeded and verify that against the testing code. This was beneficial during the seeding phase as the postgresql issues I had prevented me from being able to verify that it was working properly. This was only a temporary solution but it saved me a lot of time.
+
+* Completed
+
+This is where I would put my items after I believed they were finished and if they needed no more testing or evaluating. As I kept building the application I realised I did miss some functionality and so I added one more header.
+
+* Revision
+
+In revision I would pull items previously thought completed and add other items or enhancements to them. For example, I noticed after initally setting up the cli_bp.py file that I was missing a location/city table for the database. I added this into the revision and then was able to add it back into the daily flow of the project.
+
+
+![Trello](./docs/trello.JPG)
