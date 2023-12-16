@@ -8,9 +8,9 @@ class User(db.Model):
     last_name = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.location_id'), nullable=False)
     location = db.relationship('Location', backref='users', lazy=True)
-    allergies_model = db.relationship('Allergy', back_populates='user_model', overlaps="allergies,user_model")
+    allergies = db.relationship('Allergy', back_populates='user', lazy=True, overlaps="allergies,user")
 
 class UserSchema(Schema):
     allergies = fields.List(fields.Nested('AllergySchema', exclude=['user']))

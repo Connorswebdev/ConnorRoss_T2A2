@@ -9,7 +9,7 @@ class Restaurant(db.Model):
     phone = db.Column(db.String(20), nullable=False)
     email = db.Column(db.String(150), nullable=False)
     cuisine = db.Column(db.String(50), nullable=False)
-    city_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), nullable=False)  # Update this line
     def __repr__(self):
         return f"<Restaurant {self.name}>"
 

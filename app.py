@@ -33,14 +33,11 @@ def create_app():
     # Set JWT key
     app.config["JWT_SECRET_KEY"] = SECRET_JWT_KEY
 
-
-
     # Attach initialized extensions to the app
     db.init_app(app)
     ma_instance.init_app(app)
     jwt_instance.init_app(app)
     bcrypt_instance.init_app(app)
-    migrate = Migrate(app, db)
 
     # The following error handlers capture errors that may occur in this app and return an error message in a user-friendly format
     @app.errorhandler(401)
@@ -75,5 +72,7 @@ def create_app():
 # This block checks if the script is being run directly
 if __name__ == '__main__':
     app = create_app()
+    migrate = Migrate(app, db)  # initialize migrate with the app
     with app.app_context():
+        migrate.init_app(app)
         app.run()
