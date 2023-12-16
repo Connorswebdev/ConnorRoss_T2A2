@@ -4,6 +4,8 @@ from app import setup
 from models.user import User
 from blueprints.cli_bp import seed_db
 
+# This python file is explicitly used to test the seeding is working as intended. To test that data is being seeded,
+
 class DatabaseSeedingTestCase(unittest.TestCase):
     def setUp(self):
         self.app = setup()

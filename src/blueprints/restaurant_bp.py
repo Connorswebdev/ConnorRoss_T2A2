@@ -72,6 +72,7 @@ def update_restaurant(restaurant_id):
             restaurant.email = restaurant_info.get('email', restaurant.email)
             restaurant.description = restaurant_info.get('description', restaurant.description)
             restaurant.location_id = restaurant_info.get('location_id', restaurant.location_id)
+            
             db.session.commit() # Finalizing the change in the database, don't need to add session as nothing new was created
             return RestaurantSchema(exclude=['location_id']).dump(restaurant) # Location id is excluded as Location name will be returned anyway
         else:

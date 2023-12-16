@@ -39,7 +39,7 @@ def create_app():
     jwt_instance.init_app(app)
     bcrypt_instance.init_app(app)
 
-    # The following error handlers capture errors that may occur in this app and return an error message in a user-friendly format
+    # The following error handlers capture errors that may occur in this app
     @app.errorhandler(401)
     def unauthorized(err):
         return {'error': str(err)}, 401
@@ -72,7 +72,7 @@ def create_app():
 # This block checks if the script is being run directly
 if __name__ == '__main__':
     app = create_app()
-    migrate = Migrate(app, db)  # initialize migrate with the app
+    migrate = Migrate(app, db)  
     with app.app_context():
         migrate.init_app(app)
         app.run()
