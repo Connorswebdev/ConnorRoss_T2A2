@@ -9,6 +9,30 @@ Make sure you have the following installed on your system:
 
 Provided is a sample .env file, but a personal postgresql uri and jwt secret key must be provided for the application to work.
 
+Through terminal, connect to the PostgreSQL database:
+
+`psql`
+
+Create a database that you will use for the API (I named it picknik)
+
+`CREATE DATABASE picknik;`
+
+Connect to the database:
+
+`\c picknik`
+
+Create a user and password:
+
+`CREATE USER admin WITH PASSWORD admin;`
+
+Grant the created user with all access privileges
+
+`GRANT ALL PRIVILEGES ON picknik TO admin;`
+
+Quit out of Postgres by using:
+
+`\q`
+
 Change directory to /src folder, then run commands in terminal below:
 
 `python3 -m venv .venv`
@@ -447,8 +471,6 @@ Each city is associated with multiple restaurants.
 
 
 The implemented relationships within the app play a pivotal role in preserving database integrity and establishing an organized, interconnected structure for the data. These relationships enable seamless retrieval and manipulation of data, mirroring real-world associations among users, allergies, cities, locations, and restaurants.
-
-
 
 
 ### Requirement 10 - Describe the way tasks are allocated and tracked in your project
