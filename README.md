@@ -391,12 +391,71 @@ One-to-Many with Restaurant Model: A city can have multiple restaurants, but eac
 Relationships:
 Many-to-One with City Model: Many restaurants can be located in one city, but each restaurant is associated with one city.
 
-Requirement 9
+### Requirement 9
+
+* User Model:
+
+- Relationship with Allergy Model: One-to-Many
+
+Each user can have multiple allergies.
+Each allergy is associated with a single user.
+
+* Allergy Model:
+
+- Relationship with User Model: Many-to-One
+
+Many allergies can belong to a single user.
+Each allergy is associated with a specific user.
+
+* City Model:
+
+- Relationship with Location Model: One-to-Many
+
+Each city is associated with a single location.
+Each location can have multiple cities.
+
+* Location Model:
+
+- Relationship with City Model: One-to-Many
+
+Each location can have multiple cities.
+Each city is associated with a single location.
+
+- Relationship with User Model: One-to-Many
+Each location can have multiple users.
+Each user is associated with a single location.
+
+- Relationship with Restaurant Model: One-to-Many
+Each location can have multiple restaurants.
+Each restaurant is associated with a single location.
+
+* City Model:
+
+- Relationship with Restaurant Model: One-to-Many
+Each city can have multiple restaurants.
+Each restaurant is associated with a single city.
+
+* Restaurant Model:
+
+- Relationship with Location Model: Many-to-One
+Many restaurants can be associated with a single location.
+Each location is associated with multiple restaurants.
+
+- Relationship with City Model: Many-to-One
+Many restaurants can be associated with a single city.
+Each city is associated with multiple restaurants.
+
+
+The implemented relationships within the app play a pivotal role in preserving database integrity and establishing an organized, interconnected structure for the data. These relationships enable seamless retrieval and manipulation of data, mirroring real-world associations among users, allergies, cities, locations, and restaurants.
+
+
 
 
 ### Requirement 10 - Describe the way tasks are allocated and tracked in your project
 
 The project began by brainstorming app ideas, by asking friends what app they would love to have I was able to get some quick inspiration. A close friend of mine has a nut allergy and recently went to a restaurant where his food was cross-contaminated with nuts. So we came up with an idea for an app that would search for restaurants nearby that are allergy friendly to all users. I proposed this idea on Discord for an educators approval. I also wanted to add a function where users could enter ingredients and find recipes with "What's in The Fridge" or WTF for short. Due to time constraints and certain limitations (which I will get into shortly), this became a bit too far out of reach.
+
+![API IDEA](./docs/api_idea.JPG)
 
 In the development phase I was also already beginning to think about the relationships each model would share and how this would look in code. After a few flask install issues where the config file installed in the wrong location which took a long time googling fixes for, I was able to get it up and running. I wanted to start thinking about the end goal of the application. I created some user stories with some helpful suggestions from my previously mentioned friend. 
 
@@ -421,7 +480,7 @@ As a registered user I would like to:
 
 I utilised Trello to help me keep track of my project. I used 5 different headers to keep the bulk of my work in their respective place.
 
-* TO-DO
+* To-Do
 
 I needed somewhere I could put all of my work that was needing to be complete. This was the first stop and where I would allocate the date I wanted it to be completed by. For the most part, I planned this section how I wanted to. Due to some previously mentioned flask install issues and a few other postgresql issues I did end up falling behind. An image of the board is attached below. On the 15th was when I ran into the bulk of my issues and everything on that day was set backwards and was completed on the 16th instead.
 
