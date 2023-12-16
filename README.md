@@ -308,6 +308,6 @@ Response:
 
 The Flask application incorporates a robust error handling system to provide informative and user-friendly responses in various exceptional scenarios. For instance, when attempting to access or modify resources such as users, restaurants, or allergies that do not exist, the application responds with a clear "Not Found" message and a corresponding HTTP 404 status code. Additionally, the system handles scenarios like attempting to create a new user with an email address already in use or creating a restaurant with an invalid location ID, delivering appropriate responses with distinct HTTP status codes such as 409 Conflict or 400 Bad Request, respectively. Furthermore, when user login attempts fail due to incorrect credentials or missing email/password information, the application issues a concise and accurate error message alongside a 401 Unauthorized status code. Lastly, to ensure secure data access, the system requires the appropriate privileges (admin or user ownership) and responds with a 401 Unauthorized status if those conditions are not met. This comprehensive approach to error handling enhances the API's usability by guiding users through potential issues and facilitating effective issue resolution. Images are linked below which provide examples of how error handling was used in the app.
 
-![Local Image](docs/errorhandling.JPG.jpg)
+![Local Image](ConnorRoss_T2A2/docs/errorhandling.JPG)
 ![Local Image](docs/errorhandling2.JPG.jpg)
 
