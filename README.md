@@ -35,7 +35,7 @@ Creating this app aims to tackle a range of challenges faced by people with alle
 ### Requirement 2 - Why is it a problem that needs solving
 The need to address the challenges faced by individuals with allergies is paramount due to the severity and prevalence of allergic reactions, which can lead to hospitalizations and, in extreme cases, fatalities. According to the Centers for Disease Control and Prevention (CDC), food allergies result in over 200,000 emergency room visits annually in the United States alone. Additionally, a study published in the Journal of Allergy and Clinical Immunology estimates that food allergies affect approximately 32 million Americans, including 5.6 million children, with an increasing trend observed over the years. 
 
-[Source] Available at: (https://matsui.house.gov/media/press-releases/matsui-gallagher-lead-effort-highlight-benefits-early-introduction-food#:~:text=Food%20allergies%20impact%20an%20estimated,requiring%20emergency%20medical%20treatment%20annually) [Accessed 16 Dec. 2023].
+[Source](https://matsui.house.gov/media/press-releases/matsui-gallagher-lead-effort-highlight-benefits-early-introduction-food#:~:text=Food%20allergies%20impact%20an%20estimated,requiring%20emergency%20medical%20treatment%20annually)
 
 The consequences of accidental allergen exposure can range from mild discomfort to life-threatening anaphylaxis. Anaphylaxis is a severe allergic reaction that can cause a rapid drop in blood pressure, difficulty breathing, and, if not treated promptly, can be fatal. The Asthma and Allergy Foundation of America reports that anaphylaxis results in an estimated 1,500 deaths in the United States annually.
 
@@ -478,7 +478,7 @@ As a registered user I would like to:
 * I want to view a map of restaurant locations.
 
 
-I utilised Trello to help me keep track of my project. I used 5 different headers to keep the bulk of my work in their respective place.
+I utilised Trello to help me keep track of my project. I used 5 different headers to keep the bulk of my work in their respective place. I also posted daily standups to reflect on the work completed. I have added images below.
 
 * To-Do
 
@@ -502,3 +502,6 @@ In revision I would pull items previously thought completed and add other items 
 
 
 ![Trello](./docs/trello.JPG)
+![Standup](./docs/standup3.JPG)
+![Standup2](./docs/standup2.JPG)
+![Standup3](./docs/standup.JPG)
