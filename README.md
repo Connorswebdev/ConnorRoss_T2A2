@@ -311,3 +311,79 @@ The Flask application incorporates a robust error handling system to provide inf
 ![Local Image](./docs/errorhandling.JPG)
 ![Local Image](./docs/errorhandling2.JPG)
 
+### Requirement 6 - ERD
+
+
+### Requirement 7 - Detail any third party services that your app will use
+
+* Flask
+
+Flask serves as the core web framework, providing a simple and flexible foundation for building web applications in Python.
+
+* Flask-Bcrypt
+
+Flask-Bcrypt is utilized to securely hash passwords using the bcrypt algorithm. This enhances the security of user authentication by ensuring that passwords are not stored in plaintext.
+
+* Flask-JWT-Extended
+
+Flask-JWT-Extended is a valuable extension incorporated for JWT-based authentication and authorization. It facilitates the generation and verification of JSON Web Tokens, offering a stateless mechanism for user authentication.
+
+* Flask-Login
+
+Flask-Login is employed for streamlined user session management and authentication. This extension simplifies functions such as login, logout, and user status checks, working seamlessly with Flask-JWT-Extended for a comprehensive authentication system.
+
+* Flask-Migrate
+
+Flask-Migrate, an extension in the app's toolkit, integrates Alembic for efficient database migrations. It simplifies the management of changes to the database schema over time, supporting the evolution of the database structure as the app grows.
+
+* Flask-SQLAlchemy
+
+Flask-SQLAlchemy is a key extension used to streamline the integration of SQLAlchemy with Flask. SQLAlchemy, a powerful ORM library, allows the app to define models as Python classes and perform database operations using high-level Pythonic syntax.
+
+* Marshmallow
+
+The app uses marshmallow for object serialization/deserialization. This library is instrumental in transforming complex data types, like SQLAlchemy models, into JSON representations, facilitating smooth communication between the app and the client.
+
+* Marshmallow-SQLalchemy 
+
+marshmallow-sqlalchemy, an extension of marshmallow, specifically integrates with SQLAlchemy models. It provides serialization and deserialization support for SQLAlchemy objects, simplifying the conversion of database entities to JSON and vice versa.
+
+* psycopg2 
+
+psycopg2 acts as the PostgreSQL adapter for Python in the app. It enables the Flask application to connect to a PostgreSQL database, facilitating SQL queries and interactions with the database.
+
+* PyJWT
+
+PyJWT, a Python library, plays a crucial role in encoding and decoding JSON Web Tokens. It is used in conjunction with Flask-JWT-Extended for handling authentication tokens. JWTs are issued upon successful login, providing a secure means to verify the identity of users.
+
+
+### Requirement 8 - Describe your projects models in terms of the relationships they have with each other
+
+* User Model
+
+Relationships:
+
+Many-to-One with City Model: A user is associated with one city, but a city can have multiple users.
+One-to-Many with Allergy Model: A user can have multiple allergies, but each allergy is linked to one user.
+
+* Allergy Model 
+
+Relationships:
+Many-to-One with User Model: Many allergies are associated with one user, but each allergy is linked to a specific user.
+Location Model 
+
+* Relationships:
+
+One-to-Many with City Model: A location can have multiple cities, but each city is associated with one location.
+One-to-Many with Restaurant Model: A location can have multiple restaurants, but each restaurant is associated with one location.
+
+* City Model 
+
+Relationships:
+Many-to-One with Location Model: Many cities can belong to one location, but each city is associated with one location.
+One-to-Many with Restaurant Model: A city can have multiple restaurants, but each restaurant is located in one city.
+
+* Restaurant Model 
+
+Relationships:
+Many-to-One with City Model: Many restaurants can be located in one city, but each restaurant is associated with one city.
