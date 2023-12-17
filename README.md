@@ -92,6 +92,10 @@ Response:
 
 2. /users/{user_id}
 
+
+
+
+
 Methods: PUT, PATCH
 
 Description: Update a user's information.
@@ -109,6 +113,10 @@ Response:
 401 Unauthorized: If the request is not authorized as an admin or the user themselves.
 
 3. /users/{user_id}
+
+
+
+
 
 Method: DELETE
 
@@ -140,6 +148,8 @@ Response:
 404 Not Found: If no restaurants are found.
 
 
+
+
 2. /restaurants/{restaurant_id}
 
 Method: GET
@@ -151,6 +161,10 @@ Response:
 200 OK: Returns the restaurant object excluding the ID and location ID.
 
 404 Not Found: If the specified restaurant ID does not exist.
+
+
+
+
 
 3. /restaurants/
 
@@ -169,6 +183,8 @@ Response:
 400 Bad Request: If there are issues with the request body.
 
 401 Unauthorized: If the request is not authorized.
+
+
 
 
 4. /restaurants/{restaurant_id}
@@ -192,6 +208,8 @@ Response:
 401 Unauthorized: If the request is not authorized.
 
 
+
+
 5. /restaurants/{restaurant_id}
 
 Method: DELETE
@@ -207,6 +225,8 @@ Response:
 404 Not Found: If the specified restaurant ID does not exist.
 
 401 Unauthorized: If the request is not authorized.
+
+
 
 
 #### Authentication Routes:
@@ -227,6 +247,10 @@ Response:
 
 409 Conflict: If the email address is already in use.
 
+
+
+
+
 2. /auth/login
 
 Method: POST
@@ -244,6 +268,8 @@ Response:
 400 Bad Request: If the email and password are not provided.
 
 
+
+
 #### Allergy Routes
 
 1. /allergies/
@@ -259,6 +285,8 @@ Response:
 404 Not Found: If no allergies are found.
 
 
+
+
 2. /allergies/{allergy_id}
 
 Method: GET
@@ -270,6 +298,8 @@ Response:
 200 OK: Returns the allergy object excluding the ID and location ID.
 
 404 Not Found: If the specified allergy ID does not exist.
+
+
 
 
 3. /allergies/
@@ -291,6 +321,8 @@ Response:
 401 Unauthorized: If the request is not authorized.
 
 
+
+
 4. /allergies/{allergy_id}
 
 Method: PUT/PATCH
@@ -310,6 +342,8 @@ Response:
 400 Bad Request: If there are issues with the request body.
 
 401 Unauthorized: If the request is not authorized.
+
+
 
 
 5. /allergies/{allergy_id}
