@@ -73,7 +73,7 @@ Selecting PostgreSQL as the go-to database system brings with it some notable be
 
 Object-Relational Mapping (ORM) serves as a crucial facilitator in bridging the gap between databases and applications by abstracting the intricacies of database operations into a more intuitive, object-oriented model. With ORM, developers can interact with databases using the paradigm of classes and objects, simplifying the code and aligning it closely with the logic of the application. This abstraction also offers portability, enabling developers to switch between different database systems with minimal code adjustments. ORM significantly enhances productivity and accelerates development cycles by simplifying CRUD operations and reducing boilerplate code. The framework promotes code reusability, maintains clean separation between business logic and database interactions, and often automates query generation, minimizing the risk of SQL injection vulnerabilities. Additionally, ORM contributes to maintainability, providing tools for managing database schemas, handling concurrency control, and seamlessly integrating the database with the application's business logic. While ORM introduces some performance overhead, its advantages in terms of productivity and code organization make it a valuable asset in modern application development.
 
-### Requiremtn 5 - Document all Endpoints
+### Requirement 5 - Document all Endpoints
 
 #### User Routes (/users)
 
@@ -336,6 +336,65 @@ The Flask application incorporates a robust error handling system to provide inf
 ![Error Handling 2](./docs/errorhandling2.JPG)
 
 ### Requirement 6 - ERD
+
+![ERD](./docs/ERD.jpg)
+
+The ERD for the application represents the data model in a relational database, capturing the essential entities, attributes, and relationships. The primary entities include:
+
+* User:
+
+Represents individuals using the application.
+Attributes: user_id, first_name, last_name, email, password, is_admin, location_id.
+
+* Location:
+
+Denotes geographical locations relevant to the application.
+Attributes: location_id, name.
+
+* City ( I am using this synonymously with suburbs to reduce confusion):
+
+Corresponds to cities with associated postcodes.
+Attributes: city_id, name, postcode, location_id.
+
+* Restaurant:
+
+Represents dining establishments featured in the application.
+Attributes: restaurant_id, name, street_number, street_name, phone, email, description, cuisine, city_id.
+
+* Allergy:
+
+Captures information about specific allergies.
+Attributes: allergy_id, allergy_name, user_id, restaurant_id.
+The relationships between these entities are as follows:
+
+* User and Location:
+
+Users are associated with a specific location, establishing a one-to-many relationship between Location and User.
+
+* User and City:
+
+Users are linked to cities, indicating their place of residence. This relationship is one-to-many between City and User.
+
+* City and Location:
+
+Cities are connected to locations, forming a one-to-many relationship between Location and City.
+
+* User and Restaurant:
+
+Users can be associated with restaurants based on preferences or ownership. This creates a many-to-many relationship between User and Restaurant.
+
+* Restaurant and City:
+
+Restaurants are situated in specific cities, establishing a many-to-one relationship between City and Restaurant.
+
+* Allergy and User:
+
+Allergies are linked to users, signifying the allergies associated with each user. This results in a one-to-many relationship between User and Allergy.
+* Allergy and Restaurant:
+
+Allergies can also be associated with specific restaurants, creating a many-to-many relationship between Allergy and Restaurant. This way a restaurant can identify the types of foods used in their menu and the user can identify if it is a suitable restaurant based on their allergy requirements.
+
+This ERD design ensures the effective organization and retrieval of data, facilitating the seamless functioning of the application.
 
 
 ### Requirement 7 - Detail any third party services that your app will use
